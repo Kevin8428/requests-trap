@@ -1,7 +1,6 @@
 class RequestController < ApplicationController
   def index
     render 'index'
-
   end
 
   def create
@@ -28,23 +27,9 @@ class RequestController < ApplicationController
     @test.query_params = request.env["action_dispatch.request.query_parameters"]
     # @test.cookies = request.env["HTTP_COOKIE"]
     @test.headers = request.env["Content-Type"]
-
-
-
-
+    render json: @test, status: :ok
+    @test.response = response.inspect
     @test.save
-    @request = request.env.inspect
-    @date = Time.now
-    @remote_ip = request.remote_ip
-    @http_host = request.env["HTTP_HOST"]
-    @request_method = request.env["REQUEST_METHOD"]
-    @scheme = request.env["rack.url_scheme"]
-    @query_string = request.env["QUERY_STRING"]
-    @query_params = request.env["action_dispatch.request.query_parameters"]
-    @cookies = request.env["HTTP_COOKIE"]
-    @headers = request.env["Content-Type"]
-    render 'new'
-
   end
 
   def show
@@ -57,6 +42,7 @@ class RequestController < ApplicationController
   end
 
   def single
-    render 'single'
+    @single = Request.find(params[:id])
+    render json: @single, status: :ok
   end
 end

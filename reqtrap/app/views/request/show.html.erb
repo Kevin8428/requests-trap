@@ -1,5 +1,3 @@
-<h1>Request#show</h1>
-<p>Find me in app/views/request/show.html.erb</p>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -13,6 +11,8 @@
             <th>query_params</th>
             <th>cookies</th>
             <th>headers</th>
+            <th>request detail</th>
+            <th>response detail</th>
         </tr>
     </thead>
     <tbody id="table-id" class="searchable">
@@ -22,17 +22,56 @@
 <% @all.each do |x|%>
     <script type="text/javascript">
     var tableRow = $('<tr>');
-    var var_title = '<%=x.id%>';
-    var var_description = '<%=x.req_date%>';
-    var var_make = '<%=x.string%>';
-    var var_model = '<%=x.remote_ip%>';
-    var var_year = '<%=x.request_method%>';
+    var var_id = '<%=x.id%>';
+    var var_date = '<%=x.req_date%>';
+    var var_string = '<%=x.string%>';
+    var var_remote_ip = '<%=x.remote_ip%>';
+    var var_request_method = '<%=x.request_method%>';
+    var var_scheme = document.createElement('td');
+    var_scheme.innerHTML = '<%=x.scheme%>';
+    var_scheme.id = '<%=x.id%>'
+    var var_query_string = '<%=x.query_string%>';
+    var var_query_params = '<%=x.query_params%>';
+    var var_cookies = '<%=x.cookies%>';
+    var var_headers = '<%=x.headers%>';
+    var var_detail = '<%= link_to 'view', :action => :single, :id =>(x.id)%>';
+    var var_response = document.createElement('td');
+    var_response.innerHTML = '<%=x.response%>';
+    var_response.id = 'response_'+'<%=x.id%>'
+    var_response.style.display = 'none'
+    var element = document.createElement("button");
+    element.id = '<%=x.id%>'
+    element.type = 'button';
+    element.innerHTML = 'view';
+    element.onclick = function (){
+       toggle('response_'+this.id);
+     };
+
     $('#table-id').append(tableRow);
-    tableRow.append('<td>'+var_title+'</td>');
-    tableRow.append('<td>'+var_description+'</td>');
-    tableRow.append('<td>'+var_make+'</td>');
-    tableRow.append('<td>'+var_model+'</td>');
-    tableRow.append('<td>'+var_year+'</td>');
-    // tableRow.append('<td>'+var_detail+'</td>');
+    tableRow.append('<td>'+var_id+'</td>');
+    tableRow.append('<td>'+var_date+'</td>');
+    tableRow.append('<td>'+var_string+'</td>');
+    tableRow.append('<td>'+var_remote_ip+'</td>');
+    tableRow.append('<td>'+var_request_method+'</td>');
+    tableRow.append(var_scheme);
+    tableRow.append('<td>'+var_query_string+'</td>');
+    tableRow.append('<td>'+var_query_params+'</td>');
+    tableRow.append('<td>'+var_cookies+'</td>');
+    tableRow.append('<td>'+var_headers+'</td>');
+    tableRow.append('<td>'+var_detail+'</td>');
+    tableRow.append(element);
+    tableRow.append(var_response);
     </script>
 <%end%>
+
+<script type="text/javascript">
+  function toggle(x){
+    var el = document.getElementById(x);
+     if ( el.style.display != "none" ) {
+         el.style.display = 'none';
+        }
+         else {
+             el.style.display = 'block';
+            }
+  }
+</script>
