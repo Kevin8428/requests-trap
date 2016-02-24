@@ -24,14 +24,6 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
 <% @all.each do |x|%>
     <script type="text/javascript">
     var tableRow = $('<tr>');
@@ -40,9 +32,7 @@
     var var_string = '<%=x.string%>';
     var var_remote_ip = '<%=x.remote_ip%>';
     var var_request_method = '<%=x.request_method%>';
-    var var_scheme = document.createElement('td');
-    var_scheme.innerHTML = '<%=x.scheme%>';
-    var_scheme.id = '<%=x.id%>'
+    var var_scheme = '<%=x.scheme%>';
     var var_query_string = '<%=x.query_string%>';
     var var_query_params = '<%=x.query_params%>';
     var var_cookies = '<%=x.cookies%>';
@@ -66,7 +56,7 @@
     tableRow.append('<td>'+var_string+'</td>');
     tableRow.append('<td>'+var_remote_ip+'</td>');
     tableRow.append('<td>'+var_request_method+'</td>');
-    tableRow.append(var_scheme);
+    tableRow.append('<td>'+var_scheme+'</td>');
     tableRow.append('<td>'+var_query_string+'</td>');
     tableRow.append('<td>'+var_query_params+'</td>');
     tableRow.append('<td>'+var_cookies+'</td>');
