@@ -23,7 +23,6 @@ class RequestController < ApplicationController
     @test.remote_ip = request.remote_ip
     @test.request_method = request.env["REQUEST_METHOD"]
     @test.scheme = request.env["rack.url_scheme"]
-    @test.query_string = request.env["QUERY_STRING"]
     @test.query_params = request.env["action_dispatch.request.query_parameters"]
     @test.cookies = request.env["HTTP_COOKIE"]
     @test.headers = request.env["Content-Type"]
