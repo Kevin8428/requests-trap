@@ -1,2 +1,38 @@
 <h1>Request#show</h1>
 <p>Find me in app/views/request/show.html.erb</p>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>request date</th>
+            <th>query string</th>
+            <th>remote ip</th>
+            <th>request_method</th>
+            <th>scheme</th>
+            <th>query_string</th>
+            <th>query_params</th>
+            <th>cookies</th>
+            <th>headers</th>
+        </tr>
+    </thead>
+    <tbody id="table-id" class="searchable">
+    </tbody>
+</table>
+
+<% @all.each do |x|%>
+    <script type="text/javascript">
+    var tableRow = $('<tr>');
+    var var_title = '<%=x.id%>';
+    var var_description = '<%=x.req_date%>';
+    var var_make = '<%=x.string%>';
+    var var_model = '<%=x.remote_ip%>';
+    var var_year = '<%=x.request_method%>';
+    $('#table-id').append(tableRow);
+    tableRow.append('<td>'+var_title+'</td>');
+    tableRow.append('<td>'+var_description+'</td>');
+    tableRow.append('<td>'+var_make+'</td>');
+    tableRow.append('<td>'+var_model+'</td>');
+    tableRow.append('<td>'+var_year+'</td>');
+    // tableRow.append('<td>'+var_detail+'</td>');
+    </script>
+<%end%>

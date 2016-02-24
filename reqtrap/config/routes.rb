@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/trap_id', to: 'request#new'
   get '/trap_id/requests', to: 'request#show'
   get '/trap_id/requests/:id', to: 'request#single'
+  get '/test', to: 'request#create'
 
 
     #
