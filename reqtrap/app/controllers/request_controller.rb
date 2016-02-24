@@ -43,6 +43,6 @@ class RequestController < ApplicationController
 
   def single
     @single = Request.find(params[:id])
-    render json: @single, status: :ok
+    render json: @single, :except=> [:response], status: :ok
   end
 end
